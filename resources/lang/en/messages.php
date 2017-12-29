@@ -97,4 +97,7 @@ return [
     'movie' => 'Movie',
     'coffee' => 'Coffee',
     'concept' => 'Concept',
+    'cate-parent' => 'Category Parent',
+    'edit-category' => 'Edit Category',
+    'edit-name-cagegory' => 'Edit Name Cagegory'
 ];

@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return view('backend.user.user-edit');
+    return view('home ');
 });
 Auth::routes();
 
@@ -19,5 +19,6 @@ Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('users', 'UserController');
+    Route::resource('category', 'CategoryController');
 });
 
