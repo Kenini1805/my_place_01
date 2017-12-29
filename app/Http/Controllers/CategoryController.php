@@ -24,9 +24,9 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryRepository->paginate();
         $pluckCategory = $this->categoryRepository->showParent();
-        $pluckCategory['NULL'] = 'None';
+        $pluckCategory[''] = 'None';
         $pluckConcept = $this->categoryRepository->showConcept();
-        $pluckConcept['NULL'] = 'None';
+        $pluckConcept[''] = 'None';
 
         return view('backend.category.category-list', compact('categories', 'pluckCategory','pluckConcept'));
     }
@@ -60,6 +60,9 @@ class CategoryController extends Controller
 
             return back()->withErrors( trans('messages.updatefail') );
         }
+
+        return redirect()->action('CategoryController@index')
+            ->with('success');
     }
 
     /**
@@ -83,9 +86,9 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryRepository->find($id);
         $pluckCategory = $this->categoryRepository->showParent();
-        $pluckCategory['NULL'] = 'None';
+        $pluckCategory[''] = 'None';
         $pluckConcept = $this->categoryRepository->showConcept();
-        $pluckConcept['NULL'] = 'None';
+        $pluckConcept[''] = 'None';
 
         return view('backend.category.category-edit', compact('categories', 'pluckCategory','pluckConcept'));
     }
@@ -100,17 +103,17 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $categories = $this->categoryRepository->find($id);
-        try {
-            $input = $request->only('name', 'parent_id', 'type_concept');
-            $result = $this->categoryRepository->update($input, $id);
+            try {
+                $input = $request->only('name', 'parent_id', 'type_concept');
+                $result = $this->categoryRepository->update($input, $id);
 
-            return redirect()->action('CategoryController@index')
-            ->with('status', trans('messages.successfull') );
-        } catch (Exception $e) {
-            Log::error($e);
-
-            return back()->withErrors( trans('messages.updatefail') );
-        }
+                return redirect()->action('CategoryController@index')
+                ->with('status', trans('messages.successfull') );
+            } catch (Exception $e) {
+                Log::error($e);
+    
+                return back()->withErrors( trans('messages.updatefail') );
+            }
     }
 
     /**
@@ -121,8 +124,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = $this->categoryRepository->find($id);
-        if (!$categories) {
+        $user = $this->categoryRepository->find($id);
+        if (!$user) {
             return view('errors.404');
         }
         try {
@@ -133,7 +136,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             Log::error($e);
 
-            return redirect()->action('UsersController@index')
+            return redirect()->action('CategoryController@index')
             ->withErrors(trans('messages.deletefailed'));
         }
     }

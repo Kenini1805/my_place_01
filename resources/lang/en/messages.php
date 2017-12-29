@@ -99,5 +99,5 @@ return [
     'concept' => 'Concept',
     'cate-parent' => 'Category Parent',
     'edit-category' => 'Edit Category',
-    'edit-name-cagegory' => 'Edit Name Cagegory'
+    'edit-name-category' => 'Edit Name Category'
 ];

@@ -16,5 +16,7 @@ interface CategoryRepositoryInterface
 
     public function create(array $input);
 
+    public function update(array $input, $id);
+
     public function delete($id);
 }
