@@ -117,7 +117,6 @@ class UserController extends Controller
     public function editProfile(UserUpdateRequest $request, $id)
     {
         $user = $this->userRepository->find($id);
-        // if (Hash::check($request->current_password, Auth::user()->password)) {
             if ($request->hasFile('avatar')) {
                 $file = $request->avatar;
                 $file->move('images/Upload', $file->getClientOriginalName());
@@ -129,6 +128,7 @@ class UserController extends Controller
                 $dataUpdate = $request->only('name', 'email', 'add', 'phone');
                 $dataUpdate['avatar'] = $linkimage;
                 $dataUpdate['password'] = $request->newpassword;
+                $dataUpdate['oldpassword'] = $request->oldpassword;
                 $result = $this->userRepository->update($dataUpdate, $id);
                 if (Auth::user()->level == config('const.roleAdmin')) {
                     return redirect()->action('UserController@index')
@@ -142,11 +142,6 @@ class UserController extends Controller
 
                 return back()->withErrors(trans('messages.updatefail'));
             }
-        // } else {
-        //     $alert = ['error' => trans('Wrong pass!')];
-
-        //     return back()->with($alert);
-        // }
     }
 
     public function myWall($id)

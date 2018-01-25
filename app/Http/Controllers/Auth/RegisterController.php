@@ -96,13 +96,15 @@ class RegisterController extends Controller
                     $message->to($data['email'], 'Visitor')->subject('Visitor Feedback!');
                 });
                 Session::flash('flash_message', trans('messages.sendsuccess'));
+                $alert = ['pass' => 'Login Success!'];
 
                 return redirect()->action('Auth\LoginController@showLoginForm')
-                ->with('status', trans('messages.successfull'));
+                ->with($alert);
             }
-
-                return redirect()->action('Auth\LoginController@showLoginForm')
-                ->with('status', trans('messages.successfull'));
+                $alert = ['pass' => 'Login Success'];
+                
+                return redirect()->route('home', Auth::login($result))
+                ->with($alert);
         } catch (Exception $e) {
                 Log::error($e);
 

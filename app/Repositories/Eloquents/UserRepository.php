@@ -32,7 +32,9 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = User::find($id);
         $user->name = $input['name'];
-        $user->password = $input['password'];
+        if ($input['password'] != null ) {
+            $user->password = $input['password'];
+        }
         $user->email = $input['email'];
         $user->add = $input['add'];
         $user->phone = $input['phone'];
@@ -53,6 +55,8 @@ class UserRepository implements UserRepositoryInterface
         $user->avatar = $input['avatar'];
         $user->phone = $input['phone'];
         $user->save();
+
+        return $user;
     }
     public function delete($id)
     {

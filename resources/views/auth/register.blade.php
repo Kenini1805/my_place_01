@@ -89,7 +89,7 @@
                         {{ Form::hidden('invisible', trans('messages.registersuccess'), array('id' => 'registersuccess_id')) }}
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {{ Form::submit(Lang::get('messages.register'), array('class' => 'btn b3b3ff-bg log-btn','id' => 'log-btn-id')) }}
+                                {{ Form::submit(Lang::get('messages.register'), array('class' => 'btn b3b3ff-bg log-btn resignter-ok','id' => 'log-btn-id')) }}
                             </div>
                         </div>
                     {{ Form::close() }}

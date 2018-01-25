@@ -6,7 +6,16 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default panel-login">
                 <h3>{{ trans('messages.login') }}</h3>
-
+                @if(Session::has('pass'))
+                    <p class="alert alert-success">
+                        {{ session('pass') }}
+                    </p>
+                @endif
+                @if(Session::has('error'))
+                    <p class="alert alert-danger">
+                        {{ session('error') }}
+                    </p>
+                @endif
                 <div class="panel-body">
                     {{ Form::open(array('route' => 'login', 'class' => 'form-horizontal')) }}
 

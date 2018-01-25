@@ -62,7 +62,7 @@ class ReviewController extends Controller
         return view('frontend.review.new-review', compact('category', 'cateChild'));
     }
 
-    public function store(CreateReviewRequest $request)
+    public function store(Request $request)
     {
         try {
             if ($request->hasFile('file')) {

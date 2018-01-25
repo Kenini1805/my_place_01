@@ -9,6 +9,7 @@
                 {{ Form::label('images', trans('messages.avatar'), ['class' => 'label-edit']) }}
                 {{ Form::file('avatar', ['class' => 'input-edit', 'placeholder' => trans('messages.email'), 'id' => 'imgInp']) }}
                 {{ HTML::image(config('asset.image_path.upload') . $user->avatar, null, ['id' => 'preview']) }}
+                {{ Form::hidden('oldpassword', $user->password) }}
             </div>
             <div class="field">
                 {{ Form::label('email', trans('messages.email'), ['class' => 'label-edit']) }}

@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login', 'HomeController@index')->name('home')->middleware('CheckLogout');
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -29,11 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckAdmin'], function () {
     Route::resource('reports', 'ReportController');
     Route::post('approve', 'ReportController@approve')->name('approve');
 });
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'member'], function () {
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/search', 'SearchController@searchKey')->name('search');
     Route::resource('reviews', 'ReviewController');
     Route::resource('collection', 'CollectionController');
