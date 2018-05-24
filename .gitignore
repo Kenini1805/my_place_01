@@ -1,6 +1,4 @@
 /node_modules
-/public/hot
-/public/storage
 /storage/*.key
 /vendor
 /.idea
@@ -9,10 +7,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-.env
-/public/assets
 readme.md
-/public/css
-/public/images
 /resources/assets
 /.framgia-ci-reports
+.env

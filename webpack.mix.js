@@ -20,9 +20,6 @@ mix.copyDirectory([
 mix.copyDirectory([
     'resources/assets/images',
 ], 'public/images');
-mix.copyDirectory([
-    'resources/assets/css',
-], 'public/css');
 mix.js(['resources/assets/js/app.js',
     'public/assets/modernizr/modernizr.js',
     'public/assets/jquery/dist/jquery.js',
